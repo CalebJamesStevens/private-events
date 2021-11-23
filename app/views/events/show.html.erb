@@ -2,4 +2,13 @@
 <p><%=@event.event_name%></p>
 <p><%=@event.event_location%></p>
 <p><%=@event.event_date%></p>
-<p><%=link_to "Click here to attend!", attendees_events_path(event_id: @event.id), method: :post%></p>
+
+<%if current_user%>
+    <%if current_user.attending_events.exists?(@event.id)%>
+        <p>You're attending this event!</p>
+    <%else%>
+        <p><%=link_to "Click here to attend!", attendees_events_path(event_id: @event.id), method: :post%></p>
+    <%end%>
+<%else%>
+    <p><%=link_to "Click here to attend!", attendees_events_path(event_id: @event.id), method: :post%></p>
+<%end%>
