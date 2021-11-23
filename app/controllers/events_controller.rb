@@ -6,7 +6,7 @@ class EventsController < ApplicationController
     end
 
     def show
-        @event = Event.find(params[:event_id])
+        @event = Event.find(params[:id])
     end
 
     def new
@@ -14,13 +14,16 @@ class EventsController < ApplicationController
     end
 
     def create
+        
         @event = current_user.created_events.build(event_params)
+        puts "EVENTS CERATOR IS #{@event.creator}"
         if (@event.save)
             redirect_to @event
         else
             render :new
         end
     end
+    
 
     private
 
