@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2021_11_23_062600) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "attendees_events", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "event_id"
+    t.bigint "user_id"
+    t.bigint "event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id"], name: "index_attendees_events_on_event_id"
@@ -25,13 +28,11 @@ ActiveRecord::Schema.define(version: 2021_11_23_062600) do
     t.string "event_name"
     t.string "event_location"
     t.date "event_date"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "creator_id_id"
-    t.integer "creator_id"
+    t.bigint "creator_id"
     t.index ["creator_id"], name: "index_events_on_creator_id"
-    t.index ["creator_id_id"], name: "index_events_on_creator_id_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
