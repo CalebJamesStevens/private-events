@@ -1,3 +1,17 @@
-<% @events.each do |event|%>
-    <p><%= link_to event.event_name, event %></p>
-<%end%>
+
+<h1>Current Events</h1>
+<div class="events-index-container">
+        <% @events.each do |event|%>
+            <%= link_to event, class: "event-info-container" do%>
+                <div class="event-info">
+                    <div class="event-info-header">
+                        <div class="event-name-text"><%=event.event_name%></div>
+                    </div>
+                    <div class="event-info-body">
+                        <div class="event-date-text"><%=event.event_date%></div>
+                        <div class="event-location-text"><%=event.event_location%></div>
+                    </div>
+                </div>
+            <%end%>
+        <%end%>
+</div>

@@ -11,29 +11,33 @@
   </head>
 
   <body>
+
+    <div class="flex-container-justified-center">
+      <nav class="nav-bar">
+          <div class="nav-item-container">
+            <%= link_to 'Home', root_path%>
+            <%= link_to 'Create An Event!', new_event_path%>
+          </div>
+
+          <%if current_user%>
+            <div class="nav-item-container">
+              <%= link_to 'My Events', user_path(current_user)%>
+              <%= link_to 'Log Out', destroy_user_session_path, method: :delete%>
+            </div>
+          <%else%>
+            <div class="nav-item-container">
+              <%= link_to 'Sign In', new_user_session_path%>
+              <%= link_to 'Sign Up', new_user_registration_path%>
+            </div>
+          <%end%>
+      </nav>
+    </div>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+    
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
-    <nav class="nav-bar">
-    
-      <%= link_to 'Create An Event!', new_event_path%>
-      <%= link_to 'Home', root_path%>
-
-      <%if current_user%>
-        <%= link_to 'My Events', user_path(current_user)%>
-        <%= link_to 'Log Out', destroy_user_session_path, method: :delete%>
-      <%else%>
-       <%= link_to 'Sign In', new_user_session_path%>
-       <%= link_to 'Sign Up', new_user_registration_path%>
-      <%end%>
-
-    </nav>
-
-    
-
-
-
-
-    <%= yield %>
   </body>
 </html>
